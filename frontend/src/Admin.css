@@ -1,0 +1,157 @@
+/* src/Admin.css - Dedicated styles for Admin Management Pages */
+
+/* --- Page Background (Admin Approval View) --- */
+.admin-approval-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 4rem 2rem;
+    position: relative;
+    box-sizing: border-box;
+    overflow-y: auto;
+    
+    /* Specific Background Image */
+    background: url('https://events.vitap.ac.in/front/images/vitap-drone.jpeg') no-repeat center center;
+    background-size: cover; 
+    background-attachment: fixed; /* Fixes background during scroll */
+}
+
+/* Dark Overlay for Text Contrast */
+.admin-approval-container::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: 1;
+}
+
+/* --- Content Card and Layout --- */
+.approval-content {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 1000px;
+    color: white;
+}
+
+.approval-title {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.request-card {
+    background: rgba(255, 255, 255, 0.95); /* Semi-transparent white card */
+    color: #111827;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.card-header h3 {
+    font-size: 1.8rem;
+    color: #0d6efd;
+    margin-top: 0;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.card-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.card-details p {
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+}
+.card-details strong {
+    font-weight: 700;
+}
+
+/* --- Action Panel --- */
+.action-panel {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.action-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s;
+    flex-grow: 1;
+}
+.action-btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-accept {
+    background-color: #10b981; /* Green */
+    color: white;
+}
+.btn-accept:hover {
+    background-color: #0d9d6e;
+}
+
+.btn-reject {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+.btn-reject:hover {
+    background-color: #c82333;
+}
+
+/* --- Modal/Form Styling (for Date Picker / Comment Box) --- */
+.action-form {
+    padding: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 1rem;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.action-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.action-form input[type="date"],
+.action-form textarea,
+.action-form input[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.btn-submit-action {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-submit-accept {
+    background-color: #0d6efd; /* Blue */
+    color: white;
+}
+
+.btn-submit-reject {
+    background-color: #dc3545; /* Red */
+    color: white;
+}

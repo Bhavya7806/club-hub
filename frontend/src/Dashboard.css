@@ -1,0 +1,184 @@
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f7f6; /* Light gray background */
+}
+
+/* --- Sidebar Styles (Unchanged for layout) --- */
+.sidebar {
+  background-color: #111827; 
+  color: white;
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.open {
+  width: 260px;
+}
+
+.sidebar.closed {
+  width: 70px;
+}
+
+.sidebar-header {
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; 
+}
+
+.nav-item a, .nav-item-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  color: #d1d5db;
+  text-decoration: none;
+  white-space: nowrap; 
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item a:hover, .nav-item-button:hover {
+  background-color: #374151;
+  color: white;
+}
+
+.nav-item-button {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.dropdown-menu {
+  list-style: none;
+  padding-left: 3rem; 
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.dropdown-menu.open {
+  max-height: 200px; 
+}
+
+.dropdown-menu a {
+  font-size: 0.9rem;
+  padding: 0.75rem 1.25rem;
+}
+
+/* --- Main Content Area (Improved Styling) --- */
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto; 
+}
+
+.main-title {
+  font-size: 2.5rem;
+  color: #1f2937; /* Darker title */
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #6b7280; /* Gray subtitle */
+  margin-top: 0;
+}
+
+/* Header Card - To hold the main welcome message */
+.dashboard-header-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    border-left: 5px solid #0d6efd; /* Accent color */
+}
+
+/* Stats Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Individual Stat Card */
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+    border-bottom: 4px solid; /* For colored accents */
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h2 {
+    font-size: 1.25rem;
+    margin-top: 0;
+    color: #374151;
+}
+
+.stat-card p {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0.5rem 0 0;
+}
+
+/* Stat Card Accent Colors */
+.stat-card.primary { border-color: #0d6efd; } /* Blue */
+.stat-card.secondary { border-color: #10b981; } /* Green */
+.stat-card.tertiary { border-color: #f59e0b; } /* Yellow/Orange */
+
+
+/* Recent Activity Section */
+.section-title {
+    font-size: 1.5rem;
+    color: #1f2937;
+    margin-top: 0;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.activity-list {
+    list-style: none;
+    padding: 0;
+}
+.activity-list li {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: #4b5563;
+    border-left: 3px solid #6366f1; /* Purple accent */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}

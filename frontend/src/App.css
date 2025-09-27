@@ -1,0 +1,882 @@
+/* --- Global Reset & Fonts --- */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Add padding to the body bottom to prevent fixed footer from covering content */
+  padding-bottom: 4rem; 
+}
+
+/* --- Main App Container --- */
+.app-container {
+  min-height: 100vh;
+  background-color: #fff; /* Default background for internal pages like Dashboard */
+}
+
+/* Background for Landing and Auth Pages */
+.app-container.with-background {
+  background: url('https://vitap.ac.in/AVIF_Images/Infrastructure_Page/CB.avif') no-repeat center center/cover;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.app-container.with-background::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  z-index: 1;
+}
+
+/* --- Navbar Styles --- */
+.navbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  color: white; 
+  /* --- EDITED: Solid Dark Background --- */
+  background-color: #1f2937; 
+}
+.navbar-title {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit; 
+}
+.navbar-title:hover {
+    color: #e0e0e0;
+}
+.navbar-title svg {
+    color: white; 
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+.nav-links a {
+  text-decoration: none;
+  color: #e0e0e0; 
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+.nav-links a:hover {
+  color: white;
+}
+
+
+/* --- Landing Page Main Content --- */
+.landing-page {
+  position: relative;
+  z-index: 2;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+}
+.welcome-text h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+.welcome-text p {
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+  color: #dcdcdc;
+  max-width: 600px;
+}
+.login-modal {
+  margin-top: 3rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.login-modal h3 { font-size: 1.25rem; font-weight: 500; color: #f0f0f0; margin-bottom: 1.5rem; }
+.button-container { display: flex; gap: 1rem; }
+.btn { padding: 0.75rem 2.5rem; font-size: 1rem; font-weight: 600; text-decoration: none; border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s ease-in-out; }
+.btn-admin { background-color: #0d6efd; color: white; }
+.btn-admin:hover { background-color: #0b5ed7; transform: scale(1.05); }
+.btn-student { background-color: #f8f9fa; color: #333; }
+.btn-student:hover { background-color: #e2e6ea; transform: scale(1.05); }
+
+/* --- Auth Page (Login/Sign Up) Styles --- */
+.auth-page-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box; /* Ensures padding is included */
+}
+.auth-card {
+    position: relative; z-index: 2; width: 100%; max-width: 450px;
+    background-color: rgba(30, 41, 59, 0.7); backdrop-filter: blur(15px);
+    padding: 2.5rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); color: white;
+}
+.auth-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    gap: 0.5rem;
+}
+.auth-toggle button {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 500;
+}
+.auth-toggle button:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.auth-toggle button:disabled {
+    background-color: #0d6efd; /* Highlight active view */
+    border-color: #0d6efd;
+    cursor: default;
+}
+
+/* Style for the title (e.g., "Log in as student") */
+.auth-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+/* Style for the main form layout and inputs */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form input[type="text"] { /* Includes username input */
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: white;
+    color: #333;
+    font-size: 1rem;
+}
+
+/* Style for the submit button inside the form */
+.auth-form .btn-primary {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    font-size: 1.1rem;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+}
+.auth-form .btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+/* Style for the OR divider */
+.auth-divider {
+    text-align: center;
+    margin: 1.5rem 0;
+    position: relative;
+    color: rgba(255, 255, 255, 0.6);
+}
+.auth-divider::before, .auth-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.auth-divider::before { left: 0; }
+.auth-divider::after { right: 0; }
+
+/* Style for the Google sign-in button */
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+    color: #333;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    border: 1px solid #ddd;
+}
+.btn-google .google-icon {
+    width: 24px;
+    height: 24px;
+}
+/* Prominent Google Button Styling (Requested by user) */
+.btn-google.prominent {
+    background-color: #4285F4; /* Google Blue */
+    color: white;
+    border-color: #4285F4;
+}
+.btn-google.prominent:hover {
+    background-color: #3367d6; /* Slightly darker blue on hover */
+}
+.btn-google.prominent .google-icon path {
+    /* Ensures the icon remains colored even if the button text is white */
+    fill: white; 
+}
+
+
+/* Style for the back link container */
+.back-link-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+.back-link-container button {
+    background: none;
+    border: none;
+    color: #90b3ff; 
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+.back-link-container button:hover {
+    color: #c0d9ff;
+}
+
+
+/* --- Create Club Page Styles --- */
+.create-club-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  /* Specific background image for this page */
+  background: url('https://www.admissionindia.net/uploads/colleges/303/Areal-View-Campus.jpeg') no-repeat center center/cover;
+  position: relative;
+}
+.create-club-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65); /* Darker overlay for better readability */
+  z-index: 1;
+}
+
+.glass-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 600px;
+  
+  /* Glassmorphism Effect */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  
+  padding: 3rem;
+  color: white;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.glass-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.glass-subtitle {
+    font-size: 1rem;
+    color: #d1d5db;
+    margin-bottom: 2rem;
+}
+
+.club-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.club-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.club-form input[type="text"],
+.club-form select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: none;
+    
+    /* Input Glass Look */
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    backdrop-filter: blur(5px);
+    
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s;
+}
+
+/* Ensure placeholder text is visible against the glassy background */
+.club-form input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.club-form select option {
+    background-color: #1a202c; /* Dark background for options when opened */
+    color: white;
+}
+
+/* Style the file input minimally as its styling is hard to control */
+.club-form .file-input {
+    padding: 0.5rem;
+    border: 1px dashed rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.club-form .file-info {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: #c0d9ff;
+}
+
+.club-form .btn-submit {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    background-color: #10b981; /* Green submit button */
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+.club-form .btn-submit:hover {
+    background-color: #059669;
+}
+
+
+/* --- Submission Message Popup --- */
+.submission-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: #10b981; /* Green success color */
+    color: white;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    max-width: 80%;
+    border: 2px solid white;
+}
+.submission-message p {
+    margin-bottom: 0;
+}
+.submission-message .message-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+
+/* --- General Page Styles (for pages like Clubs, Dashboard) --- */
+.page-wrapper {
+  background-color: #fff; /* White background for internal pages */
+}
+.page-content {
+  padding: 4rem 2rem;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.page-title { text-align: center; font-size: 3rem; font-weight: 700; margin-bottom: 3rem; }
+
+/* --- Clubs Page Grid --- */
+.clubs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+
+/* NEW: Club Card Styling */
+.club-card { 
+    background-color: white; /* Changed to white for better contrast */
+    border-radius: 12px; 
+    padding: 2rem; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex; /* Added for better layout control */
+    flex-direction: column;
+    justify-content: space-between;
+}
+.club-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); 
+}
+
+.club-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.club-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.club-card-name { 
+    font-size: 1.5rem; 
+    font-weight: 700; 
+    margin: 0; 
+    color: #1f2937;
+}
+.club-card-description { 
+    font-size: 1rem; 
+    color: #6c757d; 
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Pushes the footer to the bottom */
+}
+
+.club-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #f3f4f6;
+}
+
+.btn-join {
+    padding: 0.5rem 1rem;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.btn-join:hover {
+    opacity: 0.9;
+}
+
+.btn-link {
+    color: #0d6efd;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.btn-link:hover {
+    color: #0b5ed7;
+}
+
+/* Search Bar Styling */
+.club-header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.club-search-input {
+    flex-grow: 1;
+    max-width: 400px;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.club-search-input:focus {
+    border-color: #0d6efd;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}
+
+.club-stats {
+    font-size: 1rem;
+    color: #4b5563;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.no-clubs-found {
+    grid-column: 1 / -1; /* Span across all columns in the grid */
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.25rem;
+    color: #6b7280;
+    background-color: #f9fafb;
+    border-radius: 12px;
+    border: 1px dashed #d1d5db;
+}
+
+/* 💡 Club Details Header Enhancements */
+.club-header {
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 0;
+}
+.club-header .page-title {
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+}
+.club-subtitle {
+    font-size: 1rem;
+    color: #6b7280;
+    margin-bottom: 0;
+}
+
+/* 💡 Flex Tabs Styling (Enhancement) */
+.flex-tabs {
+    display: flex;
+    margin-top: 0;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 2rem;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #6b7280;
+    cursor: pointer;
+    transition: color 0.2s, border-bottom 0.2s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+}
+
+.tab-button:hover {
+    color: #374151;
+}
+
+.tab-button.active {
+    color: #0d6efd;
+    border-bottom: 3px solid #0d6efd;
+}
+
+/* 💡 Content Area Layouts */
+
+/* Announcements List (Clean, Stacked) */
+.announcements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.announcement-card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s;
+}
+.announcement-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.announcement-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid #f59e0b; /* Accent border */
+    padding-left: 10px;
+}
+
+.announcement-meta {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+.announcement-content {
+    font-size: 1rem;
+    color: #4b5563;
+}
+
+
+/* Events Grid (Card-based, responsive) */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.event-card-item {
+    background-color: #f9fafb;
+    border-radius: 10px;
+    padding: 1.5rem;
+    border-left: 5px solid #0d6efd; /* Primary accent color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.event-item-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0d6efd;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.event-details p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #4b5563;
+}
+
+.event-status {
+    align-self: flex-start; /* Keeps the badge size contained */
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+}
+
+.status-open {
+    background-color: #10b981; /* Green */
+}
+
+.status-full {
+    background-color: #ef4444; /* Red */
+}
+
+/* 💡 GLOBAL GRADIENT BACKGROUND FOR EVENTS PAGE */
+.events-bg {
+    /* Soft, light blue/purple gradient */
+    background: linear-gradient(180deg, #f0f4f8 0%, #ffffff 50%, #f0f4f8 100%);
+}
+
+/* --- Events Info Page Styles --- */
+
+.events-poster-grid {
+    display: grid;
+    /* Responsive queue: 3 columns on desktop, 2 on tablet, 1 on mobile */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 0 1rem;
+}
+
+.poster-card {
+    /* Ensures card is a column container */
+    display: flex; 
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 12px;
+    
+    /* ENHANCEMENT: Cards are pure white for contrast and have a light border */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background-color: white; 
+    border: 1px solid #e5e7eb; /* Added border */
+}
+
+.poster-card:hover {
+    transform: translateY(-8px); /* Deeper lift on hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+.poster-image-wrapper {
+    /* CRITICAL: Forces a 3:4 aspect ratio (standard poster/A4 ratio) */
+    width: 100%;
+    padding-top: 133.33%; /* 4 / 3 = 1.3333 */
+    position: relative;
+    overflow: hidden;
+    /* ENHANCEMENT: Sharp contrast for image border */
+    border-bottom: 2px solid #f3f4f6; 
+}
+
+.poster-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+.poster-title-overlay {
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.25rem; /* Slightly larger text */
+    font-weight: 700; /* Bolder text */
+    margin: 0;
+    /* Color is set via inline style in JSX for dynamic gradient color */
+}
+
+/* --- About Page Styles (New - LIGHT, GLASSY THEME) --- */
+
+/* Specific background for the About Page */
+.app-container.about-bg {
+    /* Retain original campus background */
+    background: url('https://vitap.ac.in/AVIF_Images/Infrastructure_Page/CB.avif') no-repeat center center/cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.app-container.about-bg::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    /* 💡 LIGHT OVERLAY: Semi-transparent white/blue tint for a lighter glassy base */
+    background-color: rgba(240, 244, 248, 0.7); 
+    z-index: 1;
+}
+
+.about-content-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.about-card {
+    width: 100%;
+    max-width: 800px;
+    
+    /* 💡 LIGHT GLASSMOPRHISM */
+    background: rgba(255, 255, 255, 0.5); /* White, 50% opacity */
+    backdrop-filter: blur(20px); /* Stronger blur for glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.8); /* Crisp white border */
+    border-radius: 20px;
+    
+    padding: 3rem;
+    color: #1f2937; /* Dark text for light theme */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); /* Soft shadow */
+}
+
+.about-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    text-align: center;
+    /* Dark border */
+    border-bottom: 2px solid rgba(31, 41, 55, 0.1); 
+    padding-bottom: 1rem;
+    color: #1f2937;
+}
+
+.about-section {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.section-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0d6efd; /* Primary blue accent */
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.about-section p {
+    color: #374151; /* Dark gray body text */
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.team-member {
+    /* Slightly tinted light background for team boxes */
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.team-member h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1f2937;
+}
+
+/* Back link adjustment for light background */
+.about-card .back-link-container button {
+    color: #0d6efd;
+}
+.about-card .back-link-container button:hover {
+    color: #0b5ed7;
+}
+
+/* --- Footer Styles --- */
+.footer {
+    width: 100%;
+    padding: 1rem 0;
+    background-color: #1f2937; /* Dark background for good contrast */
+    color: #e5e7eb; /* Light text color */
+    text-align: center;
+    font-size: 0.85rem;
+    position: fixed; /* Fixes it to the bottom of the viewport */
+    bottom: 0;
+    left: 0;
+    z-index: 50; /* Ensure it stays above other content layers */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer p {
+    margin: 0;
+    padding: 0;
+}
