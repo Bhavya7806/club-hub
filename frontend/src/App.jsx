@@ -8,12 +8,15 @@ import AuthPage from './pages/AuthPage';
 import StudentDashboard from './pages/StudentDashboard';
 import CreateClubPage from './pages/CreateClubPage'; 
 import CreateEventPage from './pages/CreateEventPage'; 
-import AboutUsPage from './pages/AboutUsPage'; 
+import AboutUsPage from './pages/AboutPage.jsx'; 
 import AdminDashboard from './pages/AdminDashboard'; 
 import AcceptClubPage from './pages/AcceptClubPage'; 
 import AcceptEventPage from './pages/AcceptEventPage';
 // CRITICAL FIX: Import UserProvider for global state management
 import { UserProvider } from './context/UserContext'; 
+import EventsInfoPage from './pages/EventsInfoPage.jsx'; 
+import AboutPage from './pages/AboutPage.jsx'; 
+
 
 
 // Wrapper to access context logic (like useLocation)
@@ -34,7 +37,9 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/clubs" element={<ClubsPage />} />
-        <Route path="/about-us" element={<AboutUsPage />} /> 
+        <Route path="/about" element={<AboutPage />} /> 
+        <Route path="/events" element={<EventsInfoPage />} /> 
+        
         
         {/* Auth Route */}
         <Route path="/login/:role" element={<AuthPage />} />
